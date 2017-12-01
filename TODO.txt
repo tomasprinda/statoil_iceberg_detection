@@ -1,0 +1,43 @@
+* batch_size of None allowed
+* model storing
+* predict
+* show devset during training
+* check loss at step 0 -> should be 1
+* scaler
+* train on all trainset before submit (possibility to load conf file and script from experiment folder)
+* notebook pro vyhodnocení opredikovaných examplů
+- batch normalization
+* generate syntetic data and pretrain model on it
+* => Only finetune the last layers
+* Vyzkoušet kernel keras. Rozdíly
+* - 3. channel vstupního obrázku
+* - síť: váhy, vrstvy, droput, pooling 2 ...
+* - 3 fully connected vrstvy
+* - sigmoid místo softmax
+* - ReduceLROnPlateau
+* solve data mismatch problem
+* tensorboard - check activation values
+* logloss_smooth in tf
+* automatic trainer
+* !! Replace loss function to softmax_cewl
+* Train compatible with hypertrain.py
+
+Use models from slim
+use angle
+Vyrobit těžké trénovací examply -> alanův článek
+Use another models
+use pretrained model
+Get some data for pretraining
+make synthetic examples (rotation, scaling, flipping)
+logloss on submit > 1.41 (check correct probability)
+train on sure testset examples, semi-supervised
+error analysis
+Ze submitů a offline online skóre spočítat počet jedniček, počet examplů na kterých se vyhodnocuje, jaké jsou pravé testovací examply apod.
+ => Rebalance the data so that the nr of ones in trainset = nr of ones in testset
+Těžké examply dát do nové třídy -> Michal obličeje
+remove bias in the last layer
+
+
+Code cleaning
+* - prameter order (layers - name first, then the order of execution)
+ - boilerplate code to functions
