@@ -1,0 +1,9 @@
+Pillow
+click
+ujson
+pytest
+numpy
+tqdm
+ipython[all]
+tensorflow-gpu==1.3.0
+matplotlib

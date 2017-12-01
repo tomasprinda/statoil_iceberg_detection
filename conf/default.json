@@ -1,0 +1,7 @@
+{
+  "model": {
+    "package": "statoil.models.dummy",
+    "class": "DummyModel",
+    "batch_size": 128
+  }
+}

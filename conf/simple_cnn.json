@@ -1,0 +1,15 @@
+{
+  "model": {
+    "package": "statoil.models.simple_cnn",
+    "class": "SimpleCNN",
+    "__init__" : {
+      "learning_rate": 0.001,
+      "filter_size": 3,
+      "hidden_layer_size": 128,
+      "batch_size": 128,
+      "epochs": 1000,
+      "stop_on_no_change": 5,
+    }
+
+  }
+}
