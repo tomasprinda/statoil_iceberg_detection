@@ -114,6 +114,11 @@ class CNNInception(Model):
             reuse=None,
             scope='resnet_v1_50')
 
+        self.init_resnet = slim.assign_from_checkpoint_fn(
+            cfg.RESNET_V1_WEIGHTS,
+            slim.get_model_variables('resnet_v1_50')
+        )
+
         if self.conf["inception_dropout"]:
             activations = tf.layers.dropout(activations, training=self.is_training, rate=self.conf["dropout_rate"])
 
@@ -176,6 +181,7 @@ class CNNInception(Model):
         config.gpu_options.allow_growth = True
         with tf.Session(config=config) as sess:
             tf.global_variables_initializer().run(session=sess)
+            self.init_resnet(sess)
 
             # op to write logs to Tensorboard
             self.summary_writer_train = tf.summary.FileWriter(save_dir + "train", graph=tf.get_default_graph())

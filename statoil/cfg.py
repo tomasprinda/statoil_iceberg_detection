@@ -13,7 +13,7 @@ RAW_TESTSET = BASE_DIR + "raw/test.json"
 # DATA_FOLDER = BASE_DIR + "data03/"  # trainset expansion - flip
 # DATA_FOLDER = BASE_DIR + "data04/"  # trainset expansion - flip, rotate 45degrees
 # DATA_FOLDER = BASE_DIR + "data05/"  # traindev also augmented
-DATA_FOLDER = BASE_DIR + "data06/"  # dev also also augmented
+# DATA_FOLDER = BASE_DIR + "data06/"  # dev also also augmented
 # DATA_FOLDER = BASE_DIR + "data06_299_299_3/"  # reshaped images to 299x299x3
 DATA_FOLDER = BASE_DIR + "data07/"  # normal size, dev augmented, 90°
 DATASETS = {
@@ -47,5 +47,7 @@ CONF_SIMPLE_CNN_HYPERTUNER = PROJECT_DIR + "conf/simple_cnn_hypertuner.json"
 CONF_CNN_PRETRAIN = PROJECT_DIR + "conf/cnn_pretrain.json"
 CONF_CNN_TL = PROJECT_DIR + "conf/cnn_tl.json"
 CONF_CNN_INCEPTION = PROJECT_DIR + "conf/cnn_inception.json"
+
+RESNET_V1_WEIGHTS = BASE_DIR + "models/resnet_v1.ckpt"
 
 
