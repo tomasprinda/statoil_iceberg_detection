@@ -9,7 +9,5 @@
   "inception_dropout": {"hyperTuner": [false, true]},
   "fcn_1": {"hyperTuner": [false, true]},
   "fcn_1_out_size": {"hyperTuner": [64, 256, 512]},
-  "fcn_1_dropout": {"hyperTuner": [false, true]},
-  "mobilenet_v1_min_depth":{"hyperTuner": [8, 16, 32, 64]},
-  "mobilenet_v1_depth_multiplier":{"hyperTuner": [0.2, 0.4, 0.6, 0.8, 1.0]}
+  "fcn_1_dropout": {"hyperTuner": [false, true]}
 }

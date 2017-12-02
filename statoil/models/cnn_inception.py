@@ -11,7 +11,7 @@ from sklearn.preprocessing import StandardScaler
 import tensorflow.contrib.slim as slim
 from nets.inception_v4 import inception_v4
 from nets.mobilenet_v1 import mobilenet_v1
-# from nets.resnet_v2 import resnet_v2
+from nets.resnet_v1 import resnet_v1_50
 
 
 class CNNInception(Model):
@@ -79,14 +79,14 @@ class CNNInception(Model):
                 "*".join([str(val) for val in data_shape])))
 
         # Net
-        activations, endpoints = inception_v4(
-            self.tf_x,
-            num_classes=None,
-            is_training=self.is_training,
-            dropout_keep_prob=1.,  # Applies only if num_classes > 0
-            reuse=None,
-            scope='InceptionV4',
-            create_aux_logits=True)
+        # activations, endpoints = inception_v4(
+        #     self.tf_x,
+        #     num_classes=None,
+        #     is_training=self.is_training,
+        #     dropout_keep_prob=1.,  # Applies only if num_classes > 0
+        #     reuse=None,
+        #     scope='InceptionV4',
+        #     create_aux_logits=True)
 
         # activations, endpoints = mobilenet_v1(
         #     self.tf_x,
@@ -104,6 +104,16 @@ class CNNInception(Model):
         #     scope='MobilenetV1',
         #     global_pool=True)
 
+        activations, endpoints = resnet_v1_50(
+            self.tf_x,
+            num_classes=None,
+            is_training=self.is_training,
+            global_pool=True,
+            output_stride=None,
+            spatial_squeeze=False,
+            reuse=None,
+            scope='resnet_v1_50')
+
         if self.conf["inception_dropout"]:
             activations = tf.layers.dropout(activations, training=self.is_training, rate=self.conf["dropout_rate"])
 
@@ -114,8 +124,8 @@ class CNNInception(Model):
 
         variable_summaries(activations, "after_cnn")
 
-        if self.conf["fcn_1"]:
-            activations = dense_block("fcn_1", activations, self.conf["fcn_1_out_size"], bias=True, dropout=self.conf["fcn_1_dropout"], relu=True)
+        # if self.conf["fcn_1"]:
+        #     activations = dense_block("fcn_1", activations, self.conf["fcn_1_out_size"], bias=True, dropout=self.conf["fcn_1_dropout"], relu=True)
         # activations = dense_block("fcn_2", activations, self.conf["fcn_2_out_size"], dropout=self.conf["fcn_2_dropout"], relu=True)
         logits = dense_block("fcn_3", activations, cfg.NUM_LABELS, bias=False, dropout=False, relu=False)
 
