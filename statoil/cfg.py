@@ -48,6 +48,6 @@ CONF_CNN_PRETRAIN = PROJECT_DIR + "conf/cnn_pretrain.json"
 CONF_CNN_TL = PROJECT_DIR + "conf/cnn_tl.json"
 CONF_CNN_INCEPTION = PROJECT_DIR + "conf/cnn_inception.json"
 
-RESNET_V1_WEIGHTS = BASE_DIR + "models/resnet_v1.ckpt"
+RESNET_V1_WEIGHTS = BASE_DIR + "models/resnet_v1_50.ckpt"
 
 
