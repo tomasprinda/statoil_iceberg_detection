@@ -3,22 +3,25 @@
     "class": "SimpleCNN",
 
     "learning_rate": 0.001,
-    "batch_size": 128,
     "epochs": 1000,
+    "batch_size": 128,
     "stop_on_no_change": 5,
+
     "cnn_1_out_channels": 256,
     "cnn_2_out_channels": 128,
     "cnn_3_out_channels": 256,
     "cnn_4_out_channels": 256,
     "cnn_5_out_channels": {"hyperTuner": [16, 32, 64, 128, 256]},
     "cnn_6_out_channels": {"hyperTuner": [16, 32, 64, 128, 256]},
+
+    "dropout_rate": 0.2,
     "cnn_1_dropout": false,
     "cnn_2_dropout": {"hyperTuner": [false, true]},
     "cnn_3_dropout": false,
     "cnn_4_dropout": true,
     "cnn_5_dropout": {"hyperTuner": [false, true]},
     "cnn_6_dropout": {"hyperTuner": [false, true]},
-    "dropout_rate": 0.2,
+
     "fcn_1_out_size": 1024,
     "fcn_2_out_size": {"hyperTuner": [64, 256]},
     "fcn_1_dropout": {"hyperTuner": [false, true]},

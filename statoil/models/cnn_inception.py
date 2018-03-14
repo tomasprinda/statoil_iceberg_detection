@@ -11,7 +11,7 @@ from sklearn.preprocessing import StandardScaler
 import tensorflow.contrib.slim as slim
 from nets.inception_v4 import inception_v4
 from nets.mobilenet_v1 import mobilenet_v1
-from nets.resnet_v1 import resnet_v1_50
+# from nets.resnet_v2 import resnet_v2
 
 
 class CNNInception(Model):
@@ -79,45 +79,14 @@ class CNNInception(Model):
                 "*".join([str(val) for val in data_shape])))
 
         # Net
-        # activations, endpoints = inception_v4(
-        #     self.tf_x,
-        #     num_classes=None,
-        #     is_training=self.is_training,
-        #     dropout_keep_prob=1.,  # Applies only if num_classes > 0
-        #     reuse=None,
-        #     scope='InceptionV4',
-        #     create_aux_logits=True)
-
-        # activations, endpoints = mobilenet_v1(
-        #     self.tf_x,
-        #     num_classes=None,
-        #     dropout_keep_prob=0.999,
-        #     is_training=self.is_training,
-        #     # min_depth=self.conf["mobilenet_v1_min_depth"],
-        #     # depth_multiplier=self.conf["mobilenet_v1_depth_multiplier"],
-        #     min_depth=128,
-        #     depth_multiplier=2,
-        #     conv_defs=None,
-        #     prediction_fn=None,
-        #     spatial_squeeze=False,
-        #     reuse=None,
-        #     scope='MobilenetV1',
-        #     global_pool=True)
-
-        activations, endpoints = resnet_v1_50(
+        activations, endpoints = inception_v4(
             self.tf_x,
             num_classes=None,
             is_training=self.is_training,
-            global_pool=True,
-            output_stride=None,
-            spatial_squeeze=False,
+            dropout_keep_prob=1.,  # Applies only if num_classes > 0
             reuse=None,
-            scope='resnet_v1_50')
-
-        self.init_resnet = slim.assign_from_checkpoint_fn(
-            cfg.RESNET_V1_WEIGHTS,
-            slim.get_model_variables('resnet_v1_50')
-        )
+            scope='InceptionV4',
+            create_aux_logits=True)
 
         if self.conf["inception_dropout"]:
             activations = tf.layers.dropout(activations, training=self.is_training, rate=self.conf["dropout_rate"])
@@ -129,8 +98,8 @@ class CNNInception(Model):
 
         variable_summaries(activations, "after_cnn")
 
-        # if self.conf["fcn_1"]:
-        #     activations = dense_block("fcn_1", activations, self.conf["fcn_1_out_size"], bias=True, dropout=self.conf["fcn_1_dropout"], relu=True)
+        if self.conf["fcn_1"]:
+            activations = dense_block("fcn_1", activations, self.conf["fcn_1_out_size"], bias=True, dropout=self.conf["fcn_1_dropout"], relu=True)
         # activations = dense_block("fcn_2", activations, self.conf["fcn_2_out_size"], dropout=self.conf["fcn_2_dropout"], relu=True)
         logits = dense_block("fcn_3", activations, cfg.NUM_LABELS, bias=False, dropout=False, relu=False)
 
@@ -181,7 +150,6 @@ class CNNInception(Model):
         config.gpu_options.allow_growth = True
         with tf.Session(config=config) as sess:
             tf.global_variables_initializer().run(session=sess)
-            self.init_resnet(sess)
 
             # op to write logs to Tensorboard
             self.summary_writer_train = tf.summary.FileWriter(save_dir + "train", graph=tf.get_default_graph())

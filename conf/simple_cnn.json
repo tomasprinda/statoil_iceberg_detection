@@ -1,15 +1,29 @@
 {
-  "model": {
-    "package": "statoil.models.simple_cnn",
-    "class": "SimpleCNN",
-    "__init__" : {
-      "learning_rate": 0.001,
-      "filter_size": 3,
-      "hidden_layer_size": 128,
-      "batch_size": 128,
-      "epochs": 1000,
-      "stop_on_no_change": 5,
-    }
+  "package": "statoil.models.simple_cnn",
+  "class": "SimpleCNN",
 
-  }
+  "learning_rate": 0.001,
+  "epochs": 1000,
+  "batch_size": 128,
+  "stop_on_no_change": 5,
+
+  "cnn_1_out_channels": 64,
+  "cnn_2_out_channels": 256,
+  "cnn_3_out_channels": 128,
+  "cnn_4_out_channels": 64,
+  "cnn_5_out_channels": 32,
+  "cnn_6_out_channels": 32,
+
+  "dropout_rate": 0.4,
+  "cnn_1_dropout": true,
+  "cnn_2_dropout": true,
+  "cnn_3_dropout": false,
+  "cnn_4_dropout": false,
+  "cnn_5_dropout": false,
+  "cnn_6_dropout": true,
+
+  "fcn_1_out_size": 512,
+  "fcn_2_out_size": 64,
+  "fcn_1_dropout": false,
+  "fcn_2_dropout": true
 }

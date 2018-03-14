@@ -3,6 +3,8 @@ import math
 import matplotlib
 import numpy as np
 
+from statoil import cfg
+
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
@@ -18,8 +20,11 @@ def dataset2arrays(dataset, return_labels=True, transfer_learning=False):
         if transfer_learning:
             xs.append(example["bands"])
         else:
-            band_3 = example["band_1"] + example["band_2"]
-            xs.append(np.stack((example["band_1"], example["band_2"], band_3), axis=2))
+            image_tensor = [example["band_1"], example["band_2"]]
+            if cfg.NUM_CHANNELS == 3:
+                band_3 = example["band_1"] + example["band_2"]
+                image_tensor += band_3
+            xs.append(np.stack(image_tensor, axis=2))
         if return_labels:
             labels.append(np.array([example["is_iceberg"], ], dtype=np.float32))
 

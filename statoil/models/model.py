@@ -4,9 +4,6 @@ class Model:
         self.trained_on = trained_on
         pass
 
-    def pretrain_and_save(self, trainset, exp_dir):
-        raise NotImplemented()
-
     def train_and_save(self, trainset, devset, save_dir=None):
         raise NotImplemented()
 

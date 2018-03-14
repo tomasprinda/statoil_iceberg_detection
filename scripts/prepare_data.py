@@ -1,14 +1,12 @@
-import pickle
+import copy
 import random
-from scipy import ndimage
 
 import numpy as np
+from scipy import ndimage
 from scipy.misc import imresize
 
 from statoil import cfg
-from statoil.example_generator import ExampleGenerator
-from statoil.utils import json_load, print_info, pickle_dump, make_sure_path_exists, clean_folder, backup_files
-import copy
+from statoil.utils import json_load, pickle_dump, make_sure_path_exists, clean_folder, backup_files
 
 RATIO_TRAIN = 0.8
 SHORT_SIZE = 100
@@ -33,12 +31,6 @@ def main():
     # Testset
     test = json_load(cfg.RAW_TESTSET)
     prepare_examples(test)
-
-    # Genset
-    # gen = ExampleGenerator()
-    # gen.fit(train_thin)
-    # gentrain = gen.generate(40000)
-    # gendev = gen.generate(5000)
 
     # Dump
     datasets = {

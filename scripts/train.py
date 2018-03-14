@@ -29,6 +29,7 @@ def main(conf, exp, short_run):
     module = importlib.import_module(conf["package"])
     shutil.copy(module.__file__, exp_dir+"used_model.py")
     ModelClass = getattr(module, conf["class"])
+
     model = ModelClass(conf, trained_on="train")  # type: Model
     model.train_and_save(trainset, devset, exp_dir)
 

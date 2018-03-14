@@ -15,26 +15,23 @@ RAW_TESTSET = BASE_DIR + "raw/test.json"
 # DATA_FOLDER = BASE_DIR + "data05/"  # traindev also augmented
 # DATA_FOLDER = BASE_DIR + "data06/"  # dev also also augmented
 # DATA_FOLDER = BASE_DIR + "data06_299_299_3/"  # reshaped images to 299x299x3
-DATA_FOLDER = BASE_DIR + "data07/"  # normal size, dev augmented, 90°
+# DATA_FOLDER = BASE_DIR + "data07/"  # normal size, dev augmented, 90°
+DATA_FOLDER = BASE_DIR + "data08/"  # just trying scritps before publishing
 DATASETS = {
     "train": DATA_FOLDER + "train.pkl",
     "dev": DATA_FOLDER + "dev.pkl",
     "traindev": DATA_FOLDER + "traindev.pkl",
     "test": DATA_FOLDER + "test.pkl",
-    "gentrain": DATA_FOLDER + "gentrain.pkl",
-    "gendev": DATA_FOLDER + "gendev.pkl",
 
     "train_short": DATA_FOLDER + "train_short.pkl",
     "dev_short": DATA_FOLDER + "dev_short.pkl",
     "traindev_short": DATA_FOLDER + "traindev_short.pkl",
     "test_short": DATA_FOLDER + "test_short.pkl",
-    "gentrain_short": DATA_FOLDER + "gentrain_short.pkl",
-    "gendev_short": DATA_FOLDER + "gendev_short.pkl",
 }
 
 # Data
 IMG_SIZE = 75
-NUM_CHANNELS = 3
+NUM_CHANNELS = 2
 NUM_LABELS = 1
 
 IMG_SIZE_TL = 299
