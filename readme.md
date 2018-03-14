@@ -1,6 +1,8 @@
 # Statoil Iceberg Detection
 Solution for Kaggle competition [Statoil/C-CORE Iceberg Classifier Challenge](https://www.kaggle.com/c/statoil-iceberg-classifier-challenge)
 
+![Statoil/C-CORE Iceberg Classifier Challenge](statoil.png)
+
 ## Overview
 The aim of the competition is to classify images as icebergs/ships.
 
