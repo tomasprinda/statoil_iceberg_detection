@@ -1,0 +1,19 @@
+{
+  "learning_rate": 0.001,
+  "cnn_4_dropout": false,
+  "hidden_layer_size": 128,
+  "cnn_3_dropout": false,
+  "package": "statoil.models.model_best",
+  "epochs": 1000,
+  "cnn_3_out_channels": 128,
+  "dropout_rate": 0.4,
+  "cnn_2_out_channels": 256,
+  "cnn_4_out_channels": 64,
+  "stop_on_no_change": 5,
+  "class": "SimpleCNN",
+  "cnn_1_out_channels": 64,
+  "batch_size": 128,
+  "cnn_1_dropout": true,
+  "filter_size": 3,
+  "cnn_2_dropout": true
+}

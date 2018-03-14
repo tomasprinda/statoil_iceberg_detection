@@ -11,7 +11,7 @@ from statoil.utils import backup_files, pickle_load, csv_dump, json_load, json_d
 @click.command()
 @click.option('--exp', default="exp", help='Experiment folder name with a model.')
 @click.option('--dataset', default="test", help='{train|dev|traindev|test}[_short]')
-@click.option('--traindev_model/--train_model', default=True, help='What model to use')
+@click.option('--traindev_model/--train_model', default=False, help='What model to use')
 def main(exp, dataset, traindev_model):
     exp_name, dataset_name, use_traindev_model = exp, dataset, traindev_model
     del exp
@@ -35,15 +35,13 @@ def main(exp, dataset, traindev_model):
 
     # Store
     pickle_dump(dataset, exp_dir + dataset_name + "_predictions.pkl")
-    submission_dump(dataset, exp_dir + "{}Model_{}Data_submission.csv".format(trained_on , dataset_name))
+    submission_dump(dataset, exp_dir + "{}Model_{}Data_submission.csv".format(trained_on, dataset_name))
 
 
 def submission_dump(dataset, filename):
     header = ["id", "is_iceberg"]
     rows = [[row["id"], "{:.6f}".format(row["p"])] for row in dataset]
     csv_dump([header] + rows, filename, delimiter=",")
-
-
 
 
 if __name__ == '__main__':
